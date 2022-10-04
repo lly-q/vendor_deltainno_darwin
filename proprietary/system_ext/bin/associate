@@ -1,0 +1,82 @@
+#@author:chenliang3
+rm /data/misc/wifi/WifiConfigStore.xml
+echo "<?xml version='1.0' encoding='utf-8' standalone='yes' ?>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<WifiConfigStoreData>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<int name=\"Version\" value=\"2\" />" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<Integrity>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"EncryptedData\" num=\"48\">034f2a8b32315cba0f2f9916013a34e8cc55077c2ff9c9cf9dc9eed408ef2ce20b7533a5016ef6d2264abd15b689cfb1</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"IV\" num=\"12\">730de8d88b2cd922ded0b445</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "</Integrity>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<NetworkList>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<Network>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<WifiConfiguration>" >> /data/misc/wifi/WifiConfigStore.xml
+if test "$1" == "-0"
+then
+echo "<string name=\"ConfigKey\">\"$2\"NONE</string>" >> /data/misc/wifi/WifiConfigStore.xml
+elif test "$1" == "-1"
+then
+echo "<string name=\"ConfigKey\">\"$2\"WPA_PSK</string>" >> /data/misc/wifi/WifiConfigStore.xml
+elif test "$1" == "-2"
+then
+echo "<string name=\"ConfigKey\">\"$2\"WPA_EAP</string>" >> /data/misc/wifi/WifiConfigStore.xml
+fi
+echo "<string name=\"SSID\">\"$2\"</string>" >> /data/misc/wifi/WifiConfigStore.xml
+if test "$1" == "-0"
+then
+echo "<null name=\"PreSharedKey\" />" >> /data/misc/wifi/WifiConfigStore.xml
+elif test "$1" == "-1"
+then
+echo "<string name=\"PreSharedKey\">\"$3\"</string>" >> /data/misc/wifi/WifiConfigStore.xml
+elif test "$1" == "-2"
+then
+echo "<null name=\"PreSharedKey\" />" >> /data/misc/wifi/WifiConfigStore.xml
+fi
+if test "$1" == "-0"
+then
+echo "<byte-array name=\"AllowedKeyMgmt\" num=\"1\">01</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+elif test "$1" == "-1"
+then
+echo "<byte-array name=\"AllowedKeyMgmt\" num=\"1\">02</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+elif test "$1" == "-2"
+then
+echo "<byte-array name=\"AllowedKeyMgmt\" num=\"1\">0c</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+fi
+echo "<byte-array name=\"AllowedProtocols\" num=\"1\">03</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"AllowedAuthAlgos\" num=\"1\">01</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"AllowedGroupCiphers\" num=\"1\">2f</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"AllowedPairwiseCiphers\" num=\"1\">0e</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"AllowedGroupMgmtCiphers\" num=\"0\"></byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<byte-array name=\"AllowedSuiteBCiphers\" num=\"1\">01</byte-array>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "</WifiConfiguration>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<NetworkStatus>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "</NetworkStatus>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<IpConfiguration>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<string name=\"IpAssignment\">DHCP</string>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "<string name=\"ProxySettings\">NONE</string>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "</IpConfiguration>" >> /data/misc/wifi/WifiConfigStore.xml
+if test "$1" == "-2"
+then
+    echo "<WifiEnterpriseConfiguration>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"Identity\">$3</string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"AnonIdentity\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"Password\">$4</string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"ClientCert\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"CaCert\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"SubjectMatch\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"Engine\">0</string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"EngineId\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"PrivateKeyId\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"AltSubjectMatch\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"DomSuffixMatch\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"CaPath\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<int name=\"EapMethod\" value=\"0\" />" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<int name=\"Phase2Method\" value=\"0\" />" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"PLMN\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"Realm\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "<string name=\"SimNum\"></string>" >> /data/misc/wifi/WifiConfigStore.xml
+    echo "</WifiEnterpriseConfiguration>" >> /data/misc/wifi/WifiConfigStore.xml
+fi
+echo "</Network>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "</NetworkList>" >> /data/misc/wifi/WifiConfigStore.xml
+echo "</WifiConfigStoreData>" >> /data/misc/wifi/WifiConfigStore.xml
+stop; sleep 1; start
